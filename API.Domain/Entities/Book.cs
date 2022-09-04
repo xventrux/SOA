@@ -24,8 +24,8 @@ namespace API.Domain.Entities
         public string Description { get; set; }
 
         /// <summary>
-        /// Обложка книги
+        /// Изображения книги
         /// </summary>
-        public MyFile Cover { get; set; }
+        public List<MyFile> Images { get; set; }
     }
 }
