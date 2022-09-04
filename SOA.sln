@@ -27,6 +27,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Application", "Application"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "API.AppServices", "API.AppServices\API.AppServices.csproj", "{2730F939-4BC5-4EDB-8CD1-B20125F1CFE0}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "API.Mapper", "API.Mapper\API.Mapper.csproj", "{105F2CF9-FA80-4C2B-AD8E-F81641F04D25}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -61,6 +63,10 @@ Global
 		{2730F939-4BC5-4EDB-8CD1-B20125F1CFE0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2730F939-4BC5-4EDB-8CD1-B20125F1CFE0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2730F939-4BC5-4EDB-8CD1-B20125F1CFE0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{105F2CF9-FA80-4C2B-AD8E-F81641F04D25}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{105F2CF9-FA80-4C2B-AD8E-F81641F04D25}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{105F2CF9-FA80-4C2B-AD8E-F81641F04D25}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{105F2CF9-FA80-4C2B-AD8E-F81641F04D25}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -73,6 +79,7 @@ Global
 		{912C68E4-314E-4759-A34A-F775101C7706} = {215B150D-EB42-436C-B249-6593992870A6}
 		{AB4185B4-FB86-4861-97B7-34729BBF358E} = {2A06A665-851A-4C44-A301-7C5E09EFF7B5}
 		{2730F939-4BC5-4EDB-8CD1-B20125F1CFE0} = {B8983B6C-C228-4D30-BDFC-9AE920036DD4}
+		{105F2CF9-FA80-4C2B-AD8E-F81641F04D25} = {215B150D-EB42-436C-B249-6593992870A6}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {C1D2FB1F-D422-4484-954B-98D448C304A3}
