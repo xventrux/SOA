@@ -34,7 +34,7 @@ namespace API.AppServices.Services.BookServices
 
             foreach (var i in model.Images)
             {
-                FileData file = await _storage.UploadFileAsync($"/Portfolio/{book.Name}/", i);
+                FileData file = await _storage.UploadFileAsync($"/Books/{book.Name}/", i);
                 book.Images.Add(new MyFile()
                 {
                     CreationDate = DateTime.UtcNow,
