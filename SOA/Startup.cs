@@ -14,7 +14,7 @@ using Microsoft.OpenApi.Models;
 using System;
 using System.IO;
 using System.Reflection;
-
+using API.AppServices.Services.BookServices;
 
 namespace SOA
 {
@@ -47,6 +47,11 @@ namespace SOA
                 Storage fileService = new Storage(env.WebRootPath);
                 return fileService;
             });
+
+            #region Бизнес сервисы
+            //Регистрация сервиса для работы с книгами
+            services.AddScoped(typeof(IBookService), typeof(BookService));
+            #endregion
 
             services.AddControllers();
             services.AddSwaggerGen(c =>
