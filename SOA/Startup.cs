@@ -1,18 +1,20 @@
+using API.DataAccess;
+using API.Infrastructure.Repository;
+using API.Mapper.Mapping;
+using API.Infrastructure.FileSystem;
+
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
+
 using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Reflection;
-using System.Threading.Tasks;
+
 
 namespace SOA
 {
@@ -28,6 +30,23 @@ namespace SOA
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            //Регистрация контекста базы данных
+            services.AddDbContext<BaseDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+            services.AddScoped<DbContext>(s => s.GetRequiredService<BaseDbContext>());
+
+            //Регистрация репозитория
+            services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
+
+            //Регистрация авто маппера
+            services.AddAutoMapper(typeof(ApplicationMapperProfile));
+
+            //Регистрация сервиса для работы с файлами
+            services.AddScoped<IStorage>(sp =>
+            {
+                IWebHostEnvironment env = sp.GetRequiredService<IWebHostEnvironment>();
+                Storage fileService = new Storage(env.WebRootPath);
+                return fileService;
+            });
 
             services.AddControllers();
             services.AddSwaggerGen(c =>
