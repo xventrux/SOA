@@ -7,6 +7,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SOA", "SOA\SOA.csproj", "{4
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Hosts", "Hosts", "{30F33867-06E4-4191-9767-A1EC4A091856}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Domain", "Domain", "{FEA3B6BB-DD06-4545-9DF8-F4E7026FB06B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "API.Domain", "API.Domain\API.Domain.csproj", "{BF33EADD-A261-49E0-A299-5C418148168E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -17,12 +21,17 @@ Global
 		{4FA5A854-05C4-4057-8486-3AEE6878DB60}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4FA5A854-05C4-4057-8486-3AEE6878DB60}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4FA5A854-05C4-4057-8486-3AEE6878DB60}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BF33EADD-A261-49E0-A299-5C418148168E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BF33EADD-A261-49E0-A299-5C418148168E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BF33EADD-A261-49E0-A299-5C418148168E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BF33EADD-A261-49E0-A299-5C418148168E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{4FA5A854-05C4-4057-8486-3AEE6878DB60} = {30F33867-06E4-4191-9767-A1EC4A091856}
+		{BF33EADD-A261-49E0-A299-5C418148168E} = {FEA3B6BB-DD06-4545-9DF8-F4E7026FB06B}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {C1D2FB1F-D422-4484-954B-98D448C304A3}
