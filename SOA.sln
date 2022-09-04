@@ -17,6 +17,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "API.DataAccess", "API.DataA
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "API.Migrations", "API.Migrations\API.Migrations.csproj", "{8848BD60-1097-4B22-966C-3A38BFE0F64D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "API.Infrastructure", "API.Infrastructure\API.Infrastructure.csproj", "{912C68E4-314E-4759-A34A-F775101C7706}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{8848BD60-1097-4B22-966C-3A38BFE0F64D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8848BD60-1097-4B22-966C-3A38BFE0F64D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8848BD60-1097-4B22-966C-3A38BFE0F64D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{912C68E4-314E-4759-A34A-F775101C7706}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{912C68E4-314E-4759-A34A-F775101C7706}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{912C68E4-314E-4759-A34A-F775101C7706}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{912C68E4-314E-4759-A34A-F775101C7706}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -48,6 +54,7 @@ Global
 		{BF33EADD-A261-49E0-A299-5C418148168E} = {FEA3B6BB-DD06-4545-9DF8-F4E7026FB06B}
 		{7AF158F8-203C-4E2A-BE5A-4BFA502CA181} = {215B150D-EB42-436C-B249-6593992870A6}
 		{8848BD60-1097-4B22-966C-3A38BFE0F64D} = {30F33867-06E4-4191-9767-A1EC4A091856}
+		{912C68E4-314E-4759-A34A-F775101C7706} = {215B150D-EB42-436C-B249-6593992870A6}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {C1D2FB1F-D422-4484-954B-98D448C304A3}
