@@ -1,17 +1,15 @@
 ﻿using API.DataAccess.Configurations;
+using API.Domain.Entities;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace API.DataAccess
 {
     /// <summary>
     /// Базовый контекст базы данных
     /// </summary>
-    public class BaseDbContext : DbContext
+    public class BaseDbContext : IdentityDbContext<ApplicationUser>
     {
         public BaseDbContext(DbContextOptions options) : base(options)
         {
@@ -22,6 +20,9 @@ namespace API.DataAccess
         {
             modelBuilder.ApplyConfiguration(new BookConfiguration());
             modelBuilder.ApplyConfiguration(new MyFileConfiguration());
+            modelBuilder.ApplyConfiguration(new UserConfiguration());
+
+            base.OnModelCreating(modelBuilder);
         }
     }
 }

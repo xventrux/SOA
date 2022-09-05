@@ -1,5 +1,6 @@
 ﻿using API.AppServices.Services.BookServices;
 using API.Contracts.Book;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
@@ -10,9 +11,10 @@ namespace SOA.Controllers
     /// <summary>
     /// Контроллер для работы с книгами
     /// </summary>
+    [Authorize]
     [ApiController]
     [Route("api/[controller]")]
-    public class BookController : Controller
+    public class BookController : ControllerBase
     {
         private readonly ILogger<BookController> _logger;
         private readonly IBookService _bookService;
