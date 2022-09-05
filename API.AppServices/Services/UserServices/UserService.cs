@@ -1,5 +1,6 @@
 ﻿using API.Contracts.User;
 using API.Domain.Entities;
+using API.Infrastructure.Repository;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
@@ -16,16 +17,19 @@ namespace API.AppServices.Services.UserServices
     public class UserService : IUserService
     {
         private readonly IConfiguration _config;
+        private readonly IRepository<UserProfile> _upRepository;
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly RoleManager<IdentityRole> _roleManager;
 
-        public UserService(IConfiguration config, 
-            UserManager<ApplicationUser> userManager, 
-            RoleManager<IdentityRole> roleManager)
+        public UserService(IConfiguration config,
+            UserManager<ApplicationUser> userManager,
+            RoleManager<IdentityRole> roleManager, 
+            IRepository<UserProfile> upRepository)
         {
             _config = config;
             _userManager = userManager;
             _roleManager = roleManager;
+            _upRepository = upRepository;
         }
 
         public async Task<LoginResponseDto> Login(LoginDto model)
@@ -70,6 +74,43 @@ namespace API.AppServices.Services.UserServices
                 Roles = roles.ToArray(),
                 Token = handler.WriteToken(token)
             };
+        }
+
+        public async Task Register(RegisterDto model)
+        {
+            if(model.Password != model.PasswordConfirm)
+            {
+                throw new Exception("Пароли не совпадают");
+            }
+
+            if(await _userManager.FindByEmailAsync(model.Email) != null)
+            {
+                throw new Exception("Пользователь с такой почтой уже существует");
+            }
+
+            ApplicationUser user = new ApplicationUser()
+            {
+                Email = model.Email,
+                UserName = model.UserName
+            };
+
+            UserProfile userProfile = new UserProfile()
+            {
+                FirstName = model.FirstName,
+                LastName = model.LastName,
+                CreationDate = DateTime.UtcNow,
+                UpdateDate = DateTime.UtcNow,
+                isDelete = false,
+                Gender = model.Gender,
+                User = user
+            };
+
+            
+            await _userManager.CreateAsync(user, model.Password);
+            await _upRepository.AddAsync(userProfile);
+            //await _userManager.AddToRoleAsync(user, "user");
+
+
         }
     }
 }

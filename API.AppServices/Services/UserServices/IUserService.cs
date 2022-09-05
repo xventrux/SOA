@@ -11,5 +11,6 @@ namespace API.AppServices.Services.UserServices
     public interface IUserService
     {
         Task<LoginResponseDto> Login(LoginDto model);
+        Task Register(RegisterDto model);
     }
 }

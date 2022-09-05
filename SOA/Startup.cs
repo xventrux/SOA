@@ -56,13 +56,7 @@ namespace SOA
                 return fileService;
             });
 
-            #region Бизнес сервисы
-            //Регистрация сервиса для работы с книгами
-            services.AddTransient<IBookService, BookService>();
             
-            //Регистрация сервиса для работы с пользователями
-            services.AddTransient<IUserService, UserService>();
-            #endregion
 
             services.AddAuthentication(opt =>
             {
@@ -88,6 +82,14 @@ namespace SOA
             services.AddIdentity<ApplicationUser, IdentityRole>()
                 .AddEntityFrameworkStores<BaseDbContext>()
                 .AddDefaultTokenProviders();
+
+            #region Бизнес сервисы
+            //Регистрация сервиса для работы с книгами
+            services.AddTransient<IBookService, BookService>();
+
+            //Регистрация сервиса для работы с пользователями
+            services.AddTransient<IUserService, UserService>();
+            #endregion
 
             services.AddSwaggerGen(c =>
             {

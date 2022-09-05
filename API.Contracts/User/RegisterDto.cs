@@ -1,19 +1,21 @@
 ﻿using API.Contracts.Enums;
-using API.Domain.Entities.Base;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace API.Domain.Entities
+namespace API.Contracts.User
 {
-    public class UserProfile : EntityBase
+    public class RegisterDto
     {
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public Gender Gender { get; set; }
-
-        public ApplicationUser User { get; set; }
+        public string UserName { get; set; }
+        public string Email { get; set; }
+        public string Password { get; set; }
+        public string PasswordConfirm { get; set; }
+        
     }
 }

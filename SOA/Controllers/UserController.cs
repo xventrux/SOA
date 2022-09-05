@@ -23,7 +23,7 @@ namespace SOA.Controllers
             _userService = userService;
         }
 
-        [HttpPost]
+        [HttpPost("Login")]
         public async Task<IActionResult> Login(LoginDto model)
         {
             try
@@ -36,6 +36,20 @@ namespace SOA.Controllers
                 return BadRequest(ex.Message);
             }
             
+        }
+
+        [HttpPost("Register")]
+        public async Task<IActionResult> Register(RegisterDto model)
+        {
+            try
+            {
+                await _userService.Register(model);
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
     }
 }
