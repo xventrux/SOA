@@ -56,8 +56,11 @@ namespace SOA
                 return fileService;
             });
 
-            
+            services.AddIdentity<ApplicationUser, IdentityRole>()
+                .AddEntityFrameworkStores<BaseDbContext>()
+                .AddDefaultTokenProviders();
 
+            //Добавляем аутентификацию и настройки валидации токена
             services.AddAuthentication(opt =>
             {
                 opt.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
@@ -72,16 +75,9 @@ namespace SOA
                     ValidateIssuer = false,
                     ValidateAudience = false,
                     ValidateIssuerSigningKey = true,
-                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["Secret:Key"]))
+                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["JWT:Key"]))
                 };
             });
-
-            services.AddControllers();
-            //services.AddMvc().AddFluentValidation();
-
-            services.AddIdentity<ApplicationUser, IdentityRole>()
-                .AddEntityFrameworkStores<BaseDbContext>()
-                .AddDefaultTokenProviders();
 
             #region Бизнес сервисы
             //Регистрация сервиса для работы с книгами
@@ -91,11 +87,17 @@ namespace SOA
             services.AddTransient<IUserService, UserService>();
             #endregion
 
+            services.AddControllers();
+
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "SOA", Version = "v1" });
                 var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
                 var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+
+                var xmlFile2 = $"{Assembly.GetAssembly(typeof()).GetName().Name}.xml";
+                var xmlPath2 = Path.Combine(AppContext.BaseDirectory, xmlFile);
+
                 c.IncludeXmlComments(xmlPath);
 
                 c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
@@ -125,6 +127,8 @@ namespace SOA
                     }
                 });
             });
+
+            
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -139,11 +143,14 @@ namespace SOA
 
             app.UseHttpsRedirection();
 
+            app.UseStaticFiles();
+
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
-            app.UseStaticFiles();
+            
 
             app.UseEndpoints(endpoints =>
             {

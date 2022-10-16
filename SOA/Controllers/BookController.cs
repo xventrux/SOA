@@ -31,8 +31,8 @@ namespace SOA.Controllers
         /// </summary>
         /// <param name="model"></param>
         /// <returns></returns>
-        [HttpPost]
-        public async Task<IActionResult> Add([FromQuery] BookCreateDto model)
+        [HttpPost("Add")]
+        public async Task<IActionResult> Add([FromForm] BookCreateDto model)
         {
             try
             {

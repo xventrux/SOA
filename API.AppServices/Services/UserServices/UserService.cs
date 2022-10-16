@@ -44,7 +44,7 @@ namespace API.AppServices.Services.UserServices
             {
                 throw new Exception("Неверные данные для входа");
             }
-            if(await _userManager.CheckPasswordAsync(user, model.Password))
+            if(!await _userManager.CheckPasswordAsync(user, model.Password))
             {
                 throw new Exception("Неверный пароль");
             }
@@ -54,7 +54,7 @@ namespace API.AppServices.Services.UserServices
             var roles = await _userManager.GetRolesAsync(user);
             claims.AddRange(roles.Select(x => new Claim(ClaimTypes.Role, x)));
 
-            var authSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config["Secret:Key"]));
+            var authSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config["JWT:Key"]));
             var credentials = new SigningCredentials(authSigningKey, SecurityAlgorithms.HmacSha256Signature);
 
             var tokenDescriptor = new SecurityTokenDescriptor()
@@ -108,7 +108,8 @@ namespace API.AppServices.Services.UserServices
             
             await _userManager.CreateAsync(user, model.Password);
             await _upRepository.AddAsync(userProfile);
-            //await _userManager.AddToRoleAsync(user, "user");
+
+            var emailComfirmation = await _userManager.GenerateEmailConfirmationTokenAsync(user);
 
 
         }
