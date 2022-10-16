@@ -95,9 +95,6 @@ namespace SOA
                 var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
                 var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
 
-                var xmlFile2 = $"{Assembly.GetAssembly(typeof()).GetName().Name}.xml";
-                var xmlPath2 = Path.Combine(AppContext.BaseDirectory, xmlFile);
-
                 c.IncludeXmlComments(xmlPath);
 
                 c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
